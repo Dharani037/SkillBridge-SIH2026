@@ -105,7 +105,19 @@ SkillBridge-SIH2026/
     ├── style.css
     └── script.js
 ---
+---
 
+## Screenshots
+
+### Home Page
+
+![SkillBridge Home Page](screenshots/home-page.png)
+
+### Student Dashboard
+
+![SkillBridge Student Dashboard](screenshots/student-dashboard.png)
+
+---
 ## Installation
 
 ### 1. Clone the Repository
