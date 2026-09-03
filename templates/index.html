@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillBridge | Academia–Industry Collaboration</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Skill<span>Bridge</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#how-it-works">How It Works</a>
+
+            <a href="{{ url_for('login') }}" class="nav-login">
+                Login
+            </a>
+
+            <a href="{{ url_for('signup') }}" class="nav-signup">
+                Get Started
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                AI-Powered Skill & Career Platform
+            </div>
+
+            <h1>
+                Bridge Your
+                <span>Skills</span>
+                With Your
+                <span>Career</span>
+            </h1>
+
+            <p>
+                SkillBridge connects students, academia and industry
+                through AI-powered skill mapping, personalized learning
+                paths, internships and placement opportunities.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('signup') }}"
+                   class="primary-btn">
+                    Get Started
+                </a>
+
+                <a href="#how-it-works"
+                   class="secondary-btn">
+                    Explore Platform
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+            <div class="ai-card">
+
+                <div class="ai-card-header">
+
+                    <div class="ai-icon">
+                        AI
+                    </div>
+
+                    <div>
+                        <strong>AI Skill Analysis</strong>
+                        <small>Resume intelligence</small>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>Python</span>
+                        <strong>85%</strong>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div style="width:85%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>SQL</span>
+                        <strong>72%</strong>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div style="width:72%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="skill-item">
+
+                    <div class="skill-info">
+                        <span>Machine Learning</span>
+                        <strong>60%</strong>
+                    </div>
+
+                    <div class="skill-bar">
+                        <div style="width:60%"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="ai-insight">
+
+                    <span>💡</span>
+
+                    <p>
+                        Recommended:
+                        <strong>Machine Learning Basics</strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="stats-section">
+
+    <div class="stats-container">
+
+        <div class="stat-card">
+
+            <h2>AI</h2>
+
+            <p>Skill Analysis</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>360°</h2>
+
+            <p>Career Visibility</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>1:1</h2>
+
+            <p>Skill Matching</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h2>Smart</h2>
+
+            <p>Recommendations</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section" id="features">
+
+    <div class="section-heading">
+
+        <span>CORE FEATURES</span>
+
+        <h2>
+            Everything You Need
+            To Become Career Ready
+        </h2>
+
+        <p>
+            One platform connecting student skills with
+            real-world industry requirements.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>AI Skill Mapping</h3>
+
+            <p>
+                Upload your resume and automatically identify
+                technical and professional skills using
+                NLP-based analysis.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📊
+            </div>
+
+            <h3>Skill Gap Analysis</h3>
+
+            <p>
+                Understand which skills are missing and what
+                you need to learn to become industry ready.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎯
+            </div>
+
+            <h3>Smart Matching</h3>
+
+            <p>
+                Match your skills with internships, jobs and
+                industry opportunities using skill-based scoring.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📚
+            </div>
+
+            <h3>Personalized Learning</h3>
+
+            <p>
+                Get learning recommendations based on your
+                individual skill gaps and career goals.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🏢
+            </div>
+
+            <h3>Industry Connect</h3>
+
+            <p>
+                Help companies discover students whose skills
+                align with their internship and job requirements.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📈
+            </div>
+
+            <h3>Career Analytics</h3>
+
+            <p>
+                Track skill growth, opportunities, applications
+                and placement readiness from one dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= HOW IT WORKS ================= -->
+
+<section class="section how-section"
+         id="how-it-works">
+
+    <div class="section-heading">
+
+        <span>HOW IT WORKS</span>
+
+        <h2>
+            From Resume To Opportunity
+        </h2>
+
+        <p>
+            A simple AI-powered journey from skills
+            to career opportunities.
+        </p>
+
+    </div>
+
+
+    <div class="steps-container">
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <h3>Create Profile</h3>
+
+            <p>
+                Register and build your student profile
+                with your academic and career details.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <h3>Upload Resume</h3>
+
+            <p>
+                Upload your resume and let SkillBridge
+                analyze your skills using AI/NLP.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <h3>Find Skill Gaps</h3>
+
+            <p>
+                Discover missing skills and receive
+                personalized learning recommendations.
+            </p>
+
+        </div>
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <h3>Get Matched</h3>
+
+            <p>
+                Find internships and jobs that match
+                your current skills and career goals.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= USP ================= -->
+
+<section class="usp-section">
+
+    <div class="usp-container">
+
+        <div class="usp-content">
+
+            <span>WHY SKILLBRIDGE?</span>
+
+            <h2>
+                More Than A Placement Portal
+            </h2>
+
+            <p>
+                SkillBridge creates a continuous connection
+                between what students know and what industries
+                actually need.
+            </p>
+
+
+            <div class="usp-list">
+
+                <div class="usp-item">
+
+                    <div>✓</div>
+
+                    <p>
+                        Skill-first opportunity matching
+                    </p>
+
+                </div>
+
+
+                <div class="usp-item">
+
+                    <div>✓</div>
+
+                    <p>
+                        AI-powered resume analysis
+                    </p>
+
+                </div>
+
+
+                <div class="usp-item">
+
+                    <div>✓</div>
+
+                    <p>
+                        Explainable skill-gap insights
+                    </p>
+
+                </div>
+
+
+                <div class="usp-item">
+
+                    <div>✓</div>
+
+                    <p>
+                        Personalized learning pathways
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="usp-card">
+
+            <div class="usp-card-top">
+
+                <span>CAREER READINESS</span>
+
+                <strong>78%</strong>
+
+            </div>
+
+
+            <div class="large-progress">
+
+                <div style="width:78%"></div>
+
+            </div>
+
+
+            <div class="usp-card-bottom">
+
+                <div>
+                    <span>Skills Matched</span>
+                    <strong>8 / 10</strong>
+                </div>
+
+                <div>
+                    <span>Opportunities</span>
+                    <strong>12</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta-section">
+
+    <div class="cta-container">
+
+        <h2>
+            Ready To Build Your Career?
+        </h2>
+
+        <p>
+            Start with your skills. Let SkillBridge
+            help you find the right opportunity.
+        </p>
+
+        <a href="{{ url_for('signup') }}"
+           class="primary-btn">
+            Create Your Profile
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div>
+
+            <a href="{{ url_for('home') }}"
+               class="logo footer-logo">
+                Skill<span>Bridge</span>
+            </a>
+
+            <p>
+                AI-powered Academia–Industry
+                Collaboration Platform.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#how-it-works">How It Works</a>
+
+            <a href="{{ url_for('login') }}">
+                Login
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 SkillBridge. Built for SIH 2026.
+        </p>
+
+        <p>
+            SIH26044
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+</html>

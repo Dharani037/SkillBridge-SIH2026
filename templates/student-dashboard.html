@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard | SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-body">
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar dashboard-navbar">
+
+    <div class="nav-container">
+
+        <a href="{{ url_for('home') }}" class="logo">
+            Skill<span>Bridge</span>
+        </a>
+
+        <div class="dashboard-user">
+
+            <span>
+                Hi, {{ full_name }}
+            </span>
+
+            <a href="{{ url_for('logout') }}"
+               class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<main class="dashboard-container">
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <span class="dashboard-label">
+                STUDENT DASHBOARD
+            </span>
+
+            <h1>
+                Welcome, {{ full_name }} 👋
+            </h1>
+
+            <p>
+                Track your skills, identify gaps and discover
+                career opportunities with AI-powered insights.
+            </p>
+
+        </div>
+
+
+        <!-- Resume Upload -->
+
+        <form action="{{ url_for('upload_resume') }}"
+              method="POST"
+              enctype="multipart/form-data"
+              id="resumeForm">
+
+            <input
+                type="file"
+                name="resume"
+                id="resumeInput"
+                accept=".pdf"
+                hidden
+                onchange="document.getElementById('resumeForm').submit();"
+            >
+
+            <button
+                type="button"
+                class="primary-btn"
+                onclick="document.getElementById('resumeInput').click();">
+
+                📄 Upload Resume
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- ================= STATS ================= -->
+
+    <section class="dashboard-stats">
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <div>
+
+                <span>Skill Score</span>
+
+                <strong>
+                    {{ skill_score }}%
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                💻
+            </div>
+
+            <div>
+
+                <span>Skills Detected</span>
+
+                <strong>
+                    {{ skills_count }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <div>
+
+                <span>Skill Gaps</span>
+
+                <strong>
+                    {{ gaps_count }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-stat-card">
+
+            <div class="stat-icon">
+                🚀
+            </div>
+
+            <div>
+
+                <span>Best Match</span>
+
+                <strong>
+                    {{ best_match }}%
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESUME STATUS ================= -->
+
+    <section class="dashboard-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    RESUME ANALYSIS
+                </span>
+
+                <h2>
+                    AI-Powered Skill Analysis
+                </h2>
+
+            </div>
+
+            {% if resume_uploaded %}
+
+                <span class="status-badge success">
+                    ✓ Resume Analyzed
+                </span>
+
+            {% else %}
+
+                <span class="status-badge">
+                    Resume Not Uploaded
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        {% if resume_uploaded %}
+
+            <div class="analysis-grid">
+
+                <div class="analysis-score">
+
+                    <div class="score-circle">
+
+                        <strong>
+                            {{ skill_score }}%
+                        </strong>
+
+                        <span>
+                            Skill Score
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="analysis-content">
+
+                    <h3>
+                        Your current skill profile
+                    </h3>
+
+                    <p>
+                        SkillBridge analyzed your resume using
+                        NLP-based skill extraction and identified
+                        the following skills.
+                    </p>
+
+
+                    <div class="skill-tags">
+
+                        {% for skill in skills %}
+
+                            <span class="skill-tag">
+                                {{ skill }}
+                            </span>
+
+                        {% else %}
+
+                            <span class="empty-message">
+                                No skills detected yet.
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-analysis">
+
+                <div class="empty-icon">
+                    📄
+                </div>
+
+                <h3>
+                    Upload your resume to begin
+                </h3>
+
+                <p>
+                    Our AI/NLP system will analyze your resume,
+                    identify your skills and generate personalized
+                    career insights.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= SKILL DETAILS ================= -->
+
+    {% if skill_details %}
+
+    <section class="dashboard-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    SKILL PROFILE
+                </span>
+
+                <h2>
+                    Detected Skills & Levels
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="skill-list">
+
+            {% for item in skill_details %}
+
+                <div class="skill-row">
+
+                    <div class="skill-row-info">
+
+                        <strong>
+                            {{ item.skill_name }}
+                        </strong>
+
+                        <span>
+                            {{ item.skill_level }}%
+                        </span>
+
+                    </div>
+
+                    <div class="skill-progress">
+
+                        <div
+                            style="width: {{ item.skill_level }}%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+    {% endif %}
+
+
+    <!-- ================= SKILL GAPS ================= -->
+
+    <section class="dashboard-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    AI INSIGHT
+                </span>
+
+                <h2>
+                    Your Skill Gaps
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        {% if gaps %}
+
+            <div class="gap-grid">
+
+                {% for gap in gaps %}
+
+                    <div class="gap-card">
+
+                        <div class="gap-icon">
+                            ⚠️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                {{ gap }}
+                            </h3>
+
+                            <p>
+                                Recommended skill for your
+                                career readiness.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="success-message">
+
+                <span>🎉</span>
+
+                <div>
+
+                    <h3>
+                        Great job!
+                    </h3>
+
+                    <p>
+                        You currently meet all the required
+                        skills in the SkillBridge learning path.
+                    </p>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= LEARNING PATH ================= -->
+
+    <section class="dashboard-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    PERSONALIZED LEARNING
+                </span>
+
+                <h2>
+                    Recommended Learning Path
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        {% if recommendations %}
+
+            <div class="learning-grid">
+
+                {% for recommendation in recommendations %}
+
+                    <div class="learning-card">
+
+                        <div class="learning-icon">
+                            📚
+                        </div>
+
+                        <span class="learning-level">
+                            {{ recommendation.level }}
+                        </span>
+
+                        <h3>
+                            {{ recommendation.title }}
+                        </h3>
+
+                        <p>
+                            {{ recommendation.description }}
+                        </p>
+
+                        <button class="outline-btn"
+                                type="button">
+                            Start Learning →
+                        </button>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-analysis">
+
+                <div class="empty-icon">
+                    🏆
+                </div>
+
+                <h3>
+                    You're doing great!
+                </h3>
+
+                <p>
+                    No additional learning recommendations
+                    are currently available.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= OPPORTUNITIES ================= -->
+
+    <section class="dashboard-panel">
+
+        <div class="panel-header">
+
+            <div>
+
+                <span class="panel-label">
+                    OPPORTUNITIES
+                </span>
+
+                <h2>
+                    Recommended Internships & Jobs
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        {% if opportunities %}
+
+            <div class="opportunity-grid">
+
+                {% for opportunity in opportunities %}
+
+                    <div class="opportunity-card">
+
+                        <div class="opportunity-top">
+
+                            <div class="company-logo">
+                                {{ opportunity.logo }}
+                            </div>
+
+                            <div class="match-score">
+
+                                <strong>
+                                    {{ opportunity.match }}%
+                                </strong>
+
+                                <span>
+                                    Match
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <h3>
+                            {{ opportunity.title }}
+                        </h3>
+
+                        <p class="company-name">
+                            {{ opportunity.company }}
+                        </p>
+
+
+                        <div class="opportunity-skills">
+
+                            {% for skill in opportunity.skills %}
+
+                                <span>
+                                    {{ skill }}
+                                </span>
+
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="match-progress">
+
+                            <div
+                                style="width: {{ opportunity.match }}%;">
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="primary-btn opportunity-btn">
+
+                            View Opportunity →
+
+                        </button>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-analysis">
+
+                <div class="empty-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    No opportunities available
+                </h3>
+
+                <p>
+                    Upload your resume and build your skill
+                    profile to receive recommendations.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= AI INSIGHT ================= -->
+
+    <section class="ai-insight-panel">
+
+        <div class="ai-insight-icon">
+            ✨
+        </div>
+
+        <div>
+
+            <span>
+                SKILLBRIDGE AI
+            </span>
+
+            <h2>
+                Your career journey starts with your skills.
+            </h2>
+
+            <p>
+                Keep improving your skill gaps, complete the
+                recommended learning paths and re-upload your
+                updated resume to improve your opportunity matches.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div>
+
+            <a href="{{ url_for('home') }}"
+               class="logo footer-logo">
+
+                Skill<span>Bridge</span>
+
+            </a>
+
+            <p>
+                AI-powered Academia–Industry
+                Collaboration Platform.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 SkillBridge. Built for SIH 2026.
+        </p>
+
+        <p>
+            SIH26044
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+</body>
+</html>
