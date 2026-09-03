@@ -28,7 +28,7 @@ def get_db_connection():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="Skill@2026",
+            password="YOUR_MYSQL_PASSWORD"",
             database="skillbridge"
         )
 
